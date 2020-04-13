@@ -92,7 +92,7 @@ int main(int argc, const char *argv[])
             detKeypointsModern(keypoints, imgGray, detectorType, false);
         }
         //// EOF STUDENT ASSIGNMENT
-        cout << "Test#2" << endl;
+        // cout << "Test#2" << endl;
         //// STUDENT ASSIGNMENT
         //// TASK MP.3 -> only keep keypoints on the preceding vehicle
 
@@ -109,7 +109,7 @@ int main(int argc, const char *argv[])
                 }
             }
         }
-        cout << "Test#1" << endl;
+        // cout << "Test#1" << endl;
         //// EOF STUDENT ASSIGNMENT
 
         // optional : limit number of keypoints (helpful for debugging and learning)
