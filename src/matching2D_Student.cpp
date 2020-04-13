@@ -58,7 +58,8 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
 }
 
 // Use one of several types of state-of-art descriptors to uniquely identify keypoints
-double descKeypoints(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descriptors, std::string descriptorType)
+
+void descKeypoints(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descriptors, std::string descriptorType);
 {
     cv::Ptr<cv::DescriptorExtractor> extractor;
     if (descriptorType.compare("BRISK") == 0)
@@ -91,7 +92,6 @@ double descKeypoints(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat
     t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
     std::cout << descriptorType << " descriptor extraction in " << 1000 * t / 1.0 << " ms" << std::endl;
 
-    return t;
 }
 
 // Detect keypoints in image using the traditional Shi-Thomasi detector
