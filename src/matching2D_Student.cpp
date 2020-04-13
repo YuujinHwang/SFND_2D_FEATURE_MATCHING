@@ -4,12 +4,13 @@
 using namespace std;
 
 // Find best matches for keypoints in two camera images based on several matching methods
-void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::KeyPoint> &kPtsRef, cv::Mat &descSource, cv::Mat &descRef,
+double matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::KeyPoint> &kPtsRef, cv::Mat &descSource, cv::Mat &descRef,
                       std::vector<cv::DMatch> &matches, std::string descriptorType, std::string matcherType, std::string selectorType)
 {
     // configure matcher
     bool crossCheck = false;
     cv::Ptr<cv::DescriptorMatcher> matcher;
+    double t;
 
     if (matcherType.compare("MAT_BF") == 0)
     {
@@ -31,7 +32,7 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
     if (selectorType.compare("SEL_NN") == 0)
     { // nearest neighbor (best match)
 
-        double t = (double)cv::getTickCount();
+        t = (double)cv::getTickCount();
         matcher->match(descSource, descRef, matches); // Finds the best match for each descriptor in desc1
         t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
         cout << " (NN) with n=" << matches.size() << " matches in " << 1000 * t / 1.0 << " ms" << endl;
@@ -40,7 +41,7 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
     { // k nearest neighbors (k=2)
         vector<vector<cv::DMatch>> knn_matches;
         double minDescDistRatio = 0.8;
-        double t = (double)cv::getTickCount();
+        t = (double)cv::getTickCount();
         matcher->knnMatch(descSource, descRef, knn_matches, 2);
         t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
         for ( auto it = knn_matches.begin(); it != knn_matches.end(); ++it)
@@ -55,6 +56,8 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
         cout << "# keypoints removed = " << knn_matches.size() - matches.size() << endl;
         // ...
     }
+
+    return t;
 }
 
 // Use one of several types of state-of-art descriptors to uniquely identify keypoints
