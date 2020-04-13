@@ -101,7 +101,7 @@ int main(int argc, const char *argv[])
         cv::Rect vehicleRect(535, 180, 180, 150);
         if (bFocusOnVehicle)
         {
-            for(auto it = keypoints.begin(); it!=keypoints.end(); it++)
+            for(auto it = keypoints.begin(); it < keypoints.end(); it++)
             {
                 if (!vehicleRect.contains(it->pt))
                 {
@@ -186,7 +186,7 @@ int main(int argc, const char *argv[])
                 cv::namedWindow(windowName, 7);
                 cv::imshow(windowName, matchImg);
                 cout << "Press key to continue to next image" << endl;
-                // cv::waitKey(0); // wait for key to be pressed
+                cv::waitKey(0); // wait for key to be pressed
             }
             bVis = false;
         }
