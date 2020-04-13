@@ -189,15 +189,15 @@ void detKeypointsHarris(vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool bVis
 
 void detKeypointsModern(vector<cv::KeyPoint> &keypoints, cv::Mat &img, string detectorType, bool bVis=false)
 {
-    cd::Ptr<cv::FeatureDetector> detector;
+    cv::Ptr<cv::FeatureDetector> detector;
 
     if(detectorType.compare("SIFT") == 0)
     {
-        detector = cv::xfetures2d::SIFT::create();
+        detector = cv::xfeatures2d::SIFT::create();
     }
     else if(detectorType.compare("FAST") ==0 )
     {
-        detector = cf::FastFeatureDetector::create();
+        detector = cv::FastFeatureDetector::create();
     }
     else if(detectorType.compare("BRISK") ==0 )
     {
@@ -213,7 +213,7 @@ void detKeypointsModern(vector<cv::KeyPoint> &keypoints, cv::Mat &img, string de
     }
     else
     {
-        cout << :"No matching Detector Type" << endl;
+        cout << "No matching Detector Type" << endl;
     }
 
     double t = (double)cv::getTickCount();
