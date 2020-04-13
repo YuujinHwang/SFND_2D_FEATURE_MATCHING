@@ -157,8 +157,17 @@ int main(int argc, const char *argv[])
             /* MATCH KEYPOINT DESCRIPTORS */
 
             vector<cv::DMatch> matches;
-            string matcherType = "MAT_BF";        // MAT_BF, MAT_FLANN
-            string descriptorType = "DES_BINARY"; // DES_BINARY, DES_HOG
+            string matcherType;        // MAT_BF, MAT_FLANN
+            if (descriptorType.compare("SIFT")==0)
+            {
+                matcherType = "MAT_FLANN";
+            }
+            else
+            {
+                matcherType = "MAT_BF"; // DES_BINARY, DES_HOG
+            }
+            cout << matcherType << endl;
+            string descriptorType = "DES_BINARY";
             string selectorType = "SEL_KNN";       // SEL_NN, SEL_KNN
 
             //// STUDENT ASSIGNMENT
