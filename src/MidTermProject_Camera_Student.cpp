@@ -63,6 +63,8 @@ int main(int argc, const char *argv[])
         DataFrame frame;
         frame.cameraImg = imgGray;
         dataBuffer.push_back(frame);
+        if(dataBuffer.size()>dataBufferSize)
+            dataBuffer.erase(dataBuffer.begin());
 
         //// EOF STUDENT ASSIGNMENT
         cout << "#1 : LOAD IMAGE INTO BUFFER done" << endl;
@@ -81,9 +83,13 @@ int main(int argc, const char *argv[])
         {
             detKeypointsShiTomasi(keypoints, imgGray, false);
         }
+        else if (detectorType.compare("HARRIS") == 0)
+        {
+            detKeypointsHarris(keypoints, imgGray, false);
+        }
         else
         {
-            //...
+            detKeypointsModern(keypoints, imgGray, detectorType, false);
         }
         //// EOF STUDENT ASSIGNMENT
 
@@ -95,7 +101,13 @@ int main(int argc, const char *argv[])
         cv::Rect vehicleRect(535, 180, 180, 150);
         if (bFocusOnVehicle)
         {
-            // ...
+            for(auto it = keypoints.begin(); it!=keypoints.end(); it++)
+            {
+                if (!vehicleRect.contains(it->pt))
+                {
+                    keypoints.erase(it);
+                }
+            }
         }
 
         //// EOF STUDENT ASSIGNMENT
