@@ -63,7 +63,7 @@ double descKeypoints(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat
     cv::Ptr<cv::DescriptorExtractor> extractor;
     if (descriptorType.compare("BRISK") == 0)
     {
-        extractor = cv::BRISK::create(threshold, octaves, patternScale);
+        extractor = cv::BRISK::create();
     }
     else if (descriptorType.compare("BRIEF") == 0)
     {
