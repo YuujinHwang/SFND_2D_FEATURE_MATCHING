@@ -134,9 +134,9 @@ void detKeypointsHarris(vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool bVis
     double k = 0.04;
 
     cv::Mat dst, dst_norm, dst_norm_scaled;
-    dst = cv::MAT::zeros(img.size(), CV_32FC1);
+    dst = cv::Mat::zeros(img.size(), CV_32FC1);
     cv::cornerHarris(img, dst, blockSize, apertureSize, k, cv::BORDER_DEFAULT);
-    cv::normalize(dst, dst_norm, 0, 255, cv::NORM_MINMAX, CV_32FC1, cv::MAT())
+    cv::normalize(dst, dst_norm, 0, 255, cv::NORM_MINMAX, CV_32FC1, cv::Mat())
     cv::convertScaleAbs(dst_norm, dst_norm_scaled);
 
     // vector<cv::KeyPoint> keypoints;
