@@ -34,3 +34,82 @@ See the classroom instruction and code comments for more details on each of thes
 3. Compile: `cmake .. && make`
 4. Run it: `./2D_feature_tracking`.
 =======
+
+## MP.7 Total detected keypoints (knn)
+
+### SHITOMASI
+7008 kpts
+### HARRIS
+950 kpts
+### FAST
+26342 kpts
+### BRISK
+14571 kpts
+### ORB
+2847 kpts
+### AKAZE
+7240 kpts
+### SIFT
+7435 kpts
+
+## MP.8 Matched keypoints (knn)
+
+### SIFT Descriptor uses MAT_FLANN, while others use MAT_BF
+(matched kpts , time, efficiency)
+### SHITOMASI
+- BRISK : 2225 / 182 / 12
+- BRIEF : 3234 / 169 / 19
+- ORB : 2856 / 169 / 17
+- FREAK : 2229 / 134 / 17
+- AKAZE : fail(compute_descriptor)
+- SIFT : 3281 / 137 / 24
+
+### HARRIS
+- BRISK : 295 / 225 / 1.3
+- BRIEF : 396 / 205 / 1.9
+- ORB : 360 / 203 / 1.8
+- FREAK : 290 / 165 / 1.8
+- AKAZE : fail
+- SIFT : 385 / 188 / 2
+
+### FAST
+- BRISK : 7343 / 23 / 320
+- BRIEF : 12184 / 21 / 568
+- ORB : 10388 / 22 / 475
+- FREAK : 7721 / 22 / 344
+- SIFT : 14991 / 21 / 698
+
+### BRISK
+- BRISK : 5073 / 3861 / 1.3
+- BRIEF : 7474 / 3819 / 2.0
+- ORB : 5095 / 3843 / 1.3
+- FREAK : 5008 / 3917 / 1.3
+- SIFT : 7225  3812 / 1.9
+
+### ORB
+- BRISK : 1378 / 88 / 16
+- BRIEF : 1403 / 81 / 17
+- ORB : 1466 / 85 / 17
+- FREAK : 627 / 114 / 6
+- SIFT : 1605 / 79 / 20
+
+### AKAZE
+- BRISK : 3235 / 904 / 3.6
+- BRIEF : 4041 / 971 / 4.2
+- ORB : 3340 / 910 / 3.7
+- FREAK : 3228 / 813 / 4.0
+- AKAZE : 3463 / 853 / 4.1
+- SIFT : 3683 / 831 / 4.4
+
+### SIFT
+- BRISK : 3235 / 906 / 3.6
+- BRIEF : 4041 / 885 / 4.6
+- ORB : 3340 / 885 / 3.8
+- FREAK : 3228 / 799 / 4
+- SIFT : 3683 / 840 / 4.4
+
+## MP.9 BEST SET
+
+FAST-SIFT
+FAST-BRIEF
+FAST-ORB
